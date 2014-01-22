@@ -89,7 +89,14 @@ namespace PuppetMaster.Recording.Storage
             var registrations = _registrations[apiKey];
 
             return new RegistrationSummaryList(apiKey,
-                registrations.Select(registration => new RegistrationSummary {RegistrationId = registration.Key}));
+                registrations.Select(
+                    registration =>
+                        new RegistrationSummary
+                        {
+                            RegistrationId = registration.Key,
+                            Uri = registration.Value.Request.Url.ToString(),
+                            Method = registration.Value.Request.Method
+                        }));
         }
 
         public void ConfigureResponse(Guid registrationId, ResponseDefinition response)
