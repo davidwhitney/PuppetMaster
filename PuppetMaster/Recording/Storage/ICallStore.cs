@@ -11,5 +11,6 @@ namespace PuppetMaster.Recording.Storage
         Registration LoadRegistration(Guid registrationId, Guid apiKey);
         Registration LoadRegistration(Url calledUri, Guid apiKey);
         RegistrationSummaryList ListRegistrations(Guid apiKey);
+        void ConfigureResponse(Guid registrationId, ResponseDefinition response);
     }
 }

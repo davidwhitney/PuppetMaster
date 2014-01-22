@@ -1,5 +1,7 @@
 ﻿using System;
 using Nancy;
+using Nancy.ModelBinding;
+using PuppetMaster.Domain;
 using PuppetMaster.Recording.Storage;
 
 namespace PuppetMaster.Recording
@@ -16,7 +18,9 @@ namespace PuppetMaster.Recording
 
             Post["/_mocks/{registrationId}/response"] = x =>
             {
-                return 200;
+                var response = this.Bind<ResponseDefinition>();
+                callStore.ConfigureResponse(_registrationId, response);
+                return HttpStatusCode.Accepted;
             };
         }
 

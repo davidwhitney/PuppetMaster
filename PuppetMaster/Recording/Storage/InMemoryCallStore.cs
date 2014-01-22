@@ -9,11 +9,13 @@ namespace PuppetMaster.Recording.Storage
 {
     public class InMemoryCallStore : ICallStore
     {
-        private readonly ConcurrentDictionary<Guid, Dictionary<Guid, Registration>> _registrations;
+        private readonly ConcurrentDictionary<Guid, ConcurrentDictionary<Guid, Registration>> _registrations;
+        private readonly ConcurrentDictionary<Guid, Guid> _registrationsToApiKey;
 
         public InMemoryCallStore()
         {
-            _registrations = new ConcurrentDictionary<Guid, Dictionary<Guid, Registration>>();
+            _registrations = new ConcurrentDictionary<Guid, ConcurrentDictionary<Guid, Registration>>();
+            _registrationsToApiKey = new ConcurrentDictionary<Guid, Guid>();
         }
 
         public Guid RegisterCall(Request request, Guid? apiKey = null)
@@ -41,10 +43,11 @@ namespace PuppetMaster.Recording.Storage
             apiKey = apiKey ?? Guid.Empty;
             if (!_registrations.ContainsKey(apiKey.Value))
             {
-                _registrations.TryAdd(apiKey.Value, new Dictionary<Guid, Registration>());
+                _registrations.TryAdd(apiKey.Value, new ConcurrentDictionary<Guid, Registration>());
             }
             
-            _registrations[apiKey.Value].Add(registration.RegistrationId, registration);
+            _registrations[apiKey.Value].TryAdd(registration.RegistrationId, registration);
+            _registrationsToApiKey.TryAdd(registration.RegistrationId, apiKey.Value);
 
             return registration.RegistrationId;
         }
@@ -87,6 +90,15 @@ namespace PuppetMaster.Recording.Storage
 
             return new RegistrationSummaryList(apiKey,
                 registrations.Select(registration => new RegistrationSummary {RegistrationId = registration.Key}));
+        }
+
+        public void ConfigureResponse(Guid registrationId, ResponseDefinition response)
+        {
+            var apiKey = _registrationsToApiKey[registrationId];
+            var apiKeyRegistrations = _registrations[apiKey];
+            var call = apiKeyRegistrations[registrationId];
+
+            call.Response = response;
         }
     }
 }
