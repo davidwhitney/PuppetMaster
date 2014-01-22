@@ -66,6 +66,8 @@
     <Compile Include="Modules\RecordingModuleTests.cs" />
     <Compile Include="Modules\WebRootModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recording\InMemoryCallStoreWhenLoadingRegistrationsTests.cs" />
+    <Compile Include="Recording\InMemoryCallStoreWhenRegisteringCallsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

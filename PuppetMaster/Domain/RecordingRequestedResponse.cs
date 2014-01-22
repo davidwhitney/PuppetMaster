@@ -4,11 +4,11 @@ namespace PuppetMaster.Domain
 {
     public class RecordingRequestedResponse
     {
-        public Guid RequestKey { get; set; }
+        public Guid RegistrationId { get; set; }
 
         public RecordingRequestedResponse()
         {
-            RequestKey = Guid.NewGuid();
+            RegistrationId = Guid.NewGuid();
         }
     }
 }

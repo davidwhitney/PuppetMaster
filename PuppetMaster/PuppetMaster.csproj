@@ -71,6 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\RecordingRequestedResponse.cs" />
+    <Compile Include="Domain\Registration.cs" />
+    <Compile Include="Domain\RegistrationSummary.cs" />
+    <Compile Include="Domain\RegistrationSummaryList.cs" />
+    <Compile Include="Recording\InMemoryCallStore.cs" />
+    <Compile Include="Recording\ICallStore.cs" />
+    <Compile Include="Recording\NoRegistrationsForApiKeyException.cs" />
     <Compile Include="RequestModeDetection\NancyModulesExtensionsForSyntaticSugar.cs" />
     <Compile Include="RequestModeDetection\NancyRequestExtensions.cs" />
     <Compile Include="RequestModeDetection\PuppetMasterMode.cs" />

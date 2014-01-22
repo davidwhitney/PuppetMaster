@@ -22,7 +22,7 @@ namespace PuppetMaster.Test.Unit.Modules
             var result = Browser.Get("/anything", with => with.Header(PuppetMasterHeaders.ModeHeader, PuppetMasterMode.Record.ToString()));
 
             Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(result.Body.AsString(), Is.StringMatching("{\"RequestKey\":\".+\"}"));
+            Assert.That(result.Body.AsString(), Is.StringMatching("{\"RegistrationId\":\".+\"}"));
         }
     }
 }
