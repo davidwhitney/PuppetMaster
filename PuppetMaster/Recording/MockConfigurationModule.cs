@@ -11,6 +11,7 @@ namespace PuppetMaster.Recording
         public MockConfigurationModule(ICallStore callStore)
         {
             Before += CaptureRegistrationId;
+
             Get["/_mocks/{registrationId}"] = x => Response.AsJson(callStore.LoadRegistration(_registrationId, Guid.Empty));
 
             Post["/_mocks/{registrationId}/response"] = x =>
