@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace PuppetMaster.Modules
+namespace PuppetMaster.Replaying
 {
     public class ReplayingModule : NancyModule
     {

@@ -1,7 +1,7 @@
 ﻿using Nancy;
 using PuppetMaster.RequestModeDetection;
 
-namespace PuppetMaster.Modules
+namespace PuppetMaster.WebUi
 {
     public class WebRootModule : NancyModule
     {

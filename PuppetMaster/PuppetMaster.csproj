@@ -74,9 +74,9 @@
     <Compile Include="RequestModeDetection\NancyRequestExtensions.cs" />
     <Compile Include="RequestModeDetection\PuppetMasterMode.cs" />
     <Compile Include="RequestModeDetection\PuppetMasterHeaders.cs" />
-    <Compile Include="Modules\RecordingModule.cs" />
-    <Compile Include="Modules\ReplayingModule.cs" />
-    <Compile Include="Modules\WebRootModule.cs" />
+    <Compile Include="Recording\RecordingModule.cs" />
+    <Compile Include="Replaying\ReplayingModule.cs" />
+    <Compile Include="WebUi\WebRootModule.cs" />
     <Compile Include="NancyService.cs" />
     <Compile Include="NinjectBootstrapper.cs" />
     <Compile Include="Program.cs">
