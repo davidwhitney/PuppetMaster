@@ -32,7 +32,7 @@ namespace PuppetMaster.Test.Unit.Recording
         }
 
         [Test]
-        public void LoadRegistration_UnrecognisedRequestToken_Throws()
+        public void LoadRegistration_UnrecognisedRequestToken_ReturnsUnregisteredRequest()
         {
             var response = _store.LoadRegistration(Guid.NewGuid(), _apiKey);
 
@@ -45,6 +45,17 @@ namespace PuppetMaster.Test.Unit.Recording
             var response = _store.LoadRegistration(_requestToken, _apiKey);
 
             Assert.That(response, Is.Not.Null);
+        }
+
+        [Test]
+        public void ListRegistrations_NoRegistrationsRegistered_ReturnsEmptyList()
+        {
+            _store = new InMemoryCallStore();
+
+            var response = _store.ListRegistrations(_apiKey);
+
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response, Is.Empty);
         }
     }
 }

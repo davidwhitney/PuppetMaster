@@ -2,6 +2,7 @@
 using System.Linq;
 using Nancy;
 using NUnit.Framework;
+using PuppetMaster.Domain;
 using PuppetMaster.Recording.Storage;
 
 namespace PuppetMaster.Test.Unit.Recording
@@ -34,6 +35,17 @@ namespace PuppetMaster.Test.Unit.Recording
             var apiKey = Guid.NewGuid();
 
             var response = _store.RegisterCall(_simpleRequest, apiKey);
+
+            Assert.That(response, Is.TypeOf<Guid>());
+            Assert.That(response, Is.Not.EqualTo(Guid.Empty));
+        }
+
+        [Test]
+        public void RegisterCall_ExplicitCallWithDto_GeneratesRegistrationToken()
+        {
+            var apiKey = Guid.NewGuid();
+
+            var response = _store.RegisterCall(new Registration(), apiKey);
 
             Assert.That(response, Is.TypeOf<Guid>());
             Assert.That(response, Is.Not.EqualTo(Guid.Empty));
