@@ -70,9 +70,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modules\NancyRequestExtensions.cs" />
-    <Compile Include="Modules\PuppetMasterMode.cs" />
-    <Compile Include="Modules\PuppetMasterHeaders.cs" />
+    <Compile Include="Domain\RecordingRequestedResponse.cs" />
+    <Compile Include="RequestModeDetection\NancyRequestExtensions.cs" />
+    <Compile Include="RequestModeDetection\PuppetMasterMode.cs" />
+    <Compile Include="RequestModeDetection\PuppetMasterHeaders.cs" />
     <Compile Include="Modules\RecordingModule.cs" />
     <Compile Include="Modules\ReplayingModule.cs" />
     <Compile Include="Modules\WebRootModule.cs" />

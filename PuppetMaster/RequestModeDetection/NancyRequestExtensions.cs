@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Nancy;
 
-namespace PuppetMaster.Modules
+namespace PuppetMaster.RequestModeDetection
 {
     public static class NancyRequestExtensions
     {
@@ -14,6 +14,11 @@ namespace PuppetMaster.Modules
 
             var header = req.Headers.SingleOrDefault(x => x.Key == PuppetMasterHeaders.ModeHeader);
 
+            if (header.Value == null && mode == PuppetMasterMode.Web)
+            {
+                return true;
+            }
+            
             if (header.Value != null && header.Value.First() == PuppetMasterMode.Record.ToString())
             {
                 return true;

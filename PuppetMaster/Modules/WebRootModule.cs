@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using PuppetMaster.RequestModeDetection;
 
 namespace PuppetMaster.Modules
 {
@@ -6,7 +7,12 @@ namespace PuppetMaster.Modules
     {
         public WebRootModule()
         {
-            Get["/"] = x => 200;
+            Before += ctx => !ctx.Request.InMode(PuppetMasterMode.Web) ? (Response) 404 : null;
+
+            Get["/"] = x =>
+            {
+                return 200;
+            };
         }
     }
 }

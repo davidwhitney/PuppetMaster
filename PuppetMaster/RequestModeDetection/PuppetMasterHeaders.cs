@@ -1,4 +1,4 @@
-﻿namespace PuppetMaster.Modules
+﻿namespace PuppetMaster.RequestModeDetection
 {
     public class PuppetMasterHeaders
     {

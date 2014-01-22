@@ -1,4 +1,6 @@
 ﻿using Nancy;
+using PuppetMaster.Domain;
+using PuppetMaster.RequestModeDetection;
 
 namespace PuppetMaster.Modules
 {
@@ -15,7 +17,7 @@ namespace PuppetMaster.Modules
 
             Get["/(.*)", ctx => ctx.Request.InMode(PuppetMasterMode.Record)] = x =>
             {
-                return "record";
+                return Response.AsJson(new RecordingRequestedResponse());
             };
         }
 
