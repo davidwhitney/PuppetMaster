@@ -63,7 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserTest.cs" />
-    <Compile Include="Modules\RecordingModule.cs" />
+    <Compile Include="Modules\RecordingModuleTests.cs" />
+    <Compile Include="Modules\WebRootModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

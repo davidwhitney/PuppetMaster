@@ -6,10 +6,18 @@ namespace PuppetMaster.Modules
     {
         public RecordingModule()
         {
-            Get["/(.*)", ctx => ctx.Request.Url.HostName.Contains("record")] = x =>
+            After += ctx => ctx.Response.Headers.Add(PuppetMasterHeaders.RecordingHeader, "true");
+
+            Get["/", ctx => ctx.Request.InMode(PuppetMasterMode.Record)] = x =>
+            {
+                return "record";
+            };
+
+            Get["/(.*)", ctx => ctx.Request.InMode(PuppetMasterMode.Record)] = x =>
             {
                 return "record";
             };
         }
+
     }
 }
