@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\RecordingRequestedResponse.cs" />
+    <Compile Include="RequestModeDetection\NancyModulesExtensionsForSyntaticSugar.cs" />
     <Compile Include="RequestModeDetection\NancyRequestExtensions.cs" />
     <Compile Include="RequestModeDetection\PuppetMasterMode.cs" />
     <Compile Include="RequestModeDetection\PuppetMasterHeaders.cs" />

@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using PuppetMaster.RequestModeDetection;
 
 namespace PuppetMaster.Replaying
 {
@@ -6,7 +7,7 @@ namespace PuppetMaster.Replaying
     {
         public ReplayingModule()
         {
-            Get["/(.*)", ctx => ctx.Request.Url.HostName.Contains("replay")] = x =>
+            Get["/(.*)", ctx => ctx.ModeIs(PuppetMasterMode.Replay)] = x =>
             {
                 return "replay";
             };

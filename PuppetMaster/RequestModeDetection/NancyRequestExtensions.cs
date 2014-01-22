@@ -18,8 +18,8 @@ namespace PuppetMaster.RequestModeDetection
             {
                 return true;
             }
-            
-            if (header.Value != null && header.Value.First() == PuppetMasterMode.Record.ToString())
+
+            if (header.Value != null && header.Value.First() == mode.ToString())
             {
                 return true;
             }
