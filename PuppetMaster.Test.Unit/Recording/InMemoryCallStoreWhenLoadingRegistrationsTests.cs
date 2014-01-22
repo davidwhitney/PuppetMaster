@@ -31,13 +31,13 @@ namespace PuppetMaster.Test.Unit.Recording
         }
 
         [Test]
-        public void LoadRegistration_InvalidRequestToken_Throws()
+        public void LoadRegistration_UnrecognisedRequestToken_Throws()
         {
-            var response = _store.LoadRegistration(_requestToken, _apiKey);
+            var response = _store.LoadRegistration(Guid.NewGuid(), _apiKey);
 
             Assert.That(response, Is.EqualTo(Registration.NotRegistered));
         }
-
+        
         [Test]
         public void LoadRegistration_ValidRequestToken_ReturnsRegistration()
         {

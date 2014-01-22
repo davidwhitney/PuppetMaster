@@ -39,12 +39,9 @@ namespace PuppetMaster.Recording
             }
 
             var registrationsPerApiKey = _registrations[apiKey];
-            if (registrationsPerApiKey.ContainsKey(requestToken))
-            {
-                return Registration.NotRegistered;
-            }
-
-            throw new NotImplementedException();
+            return !registrationsPerApiKey.ContainsKey(requestToken)
+                ? Registration.NotRegistered
+                : registrationsPerApiKey[requestToken];
         }
 
         public RegistrationSummaryList ListRegistrations(Guid apiKey)
