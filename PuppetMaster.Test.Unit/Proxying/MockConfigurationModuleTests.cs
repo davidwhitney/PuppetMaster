@@ -29,8 +29,8 @@ namespace PuppetMaster.Test.Unit.Proxying
 
             var result = Browser.Post("/_mocks", with => with.Body(JsonConvert.SerializeObject(response)));
 
-            Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(result.Body.AsString(), Is.StringMatching("{\"RegistrationId\":\".+\"}"));
+            Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+            Assert.That(result.Body.AsString(), Is.StringMatching("\"RegistrationId\":\".+\""));
         }
 
         [Test]

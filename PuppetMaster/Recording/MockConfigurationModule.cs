@@ -21,7 +21,7 @@ namespace PuppetMaster.Recording
             {
                 var registration = this.Bind<Registration>();
                 var registrationId = callStore.RegisterCall(registration, Guid.Empty);
-                return Response.AsJson(new RecordingRequestedResponse { RegistrationId = registrationId });
+                return Response.AsJson(new RecordingRequestedResponse { RegistrationId = registrationId }, HttpStatusCode.Created);
             };
 
             Get["/_mocks/{registrationId}"] = x =>
