@@ -1,6 +1,7 @@
 ﻿using Nancy.Bootstrapper;
 using Nancy.Json;
 using Ninject;
+using PuppetMaster.Recording;
 
 namespace PuppetMaster
 {
@@ -14,6 +15,7 @@ namespace PuppetMaster
 
         protected override void ConfigureApplicationContainer(IKernel container)
         {
+            container.Bind<ICallStore>().To<InMemoryCallStore>().InSingletonScope();
             base.ConfigureApplicationContainer(container);
         }
     }

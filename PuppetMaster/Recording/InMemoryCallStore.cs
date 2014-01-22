@@ -19,19 +19,24 @@ namespace PuppetMaster.Recording
         public Guid RegisterCall(Request request, Guid? apiKey = null)
         {
             apiKey = apiKey ?? Guid.Empty;
-            var registration = new Registration();
-
             if (!_registrations.ContainsKey(apiKey.Value))
             {
                 _registrations.TryAdd(apiKey.Value, new Dictionary<Guid, Registration>());
             }
 
+            var registration = new Registration
+            {
+                Url = request.Url, 
+                Headers = request.Headers, 
+                Method = request.Method,
+            };
+            
             _registrations[apiKey.Value].Add(registration.RegistrationId, registration);
 
             return registration.RegistrationId;
         }
 
-        public Registration LoadRegistration(Guid requestToken, Guid apiKey)
+        public Registration LoadRegistration(Guid registrationId, Guid apiKey)
         {
             if (!_registrations.ContainsKey(apiKey))
             {
@@ -39,13 +44,18 @@ namespace PuppetMaster.Recording
             }
 
             var registrationsPerApiKey = _registrations[apiKey];
-            return !registrationsPerApiKey.ContainsKey(requestToken)
+            return !registrationsPerApiKey.ContainsKey(registrationId)
                 ? Registration.NotRegistered
-                : registrationsPerApiKey[requestToken];
+                : registrationsPerApiKey[registrationId];
         }
 
         public RegistrationSummaryList ListRegistrations(Guid apiKey)
         {
+            if (!_registrations.ContainsKey(apiKey))
+            {
+                return new RegistrationSummaryList(apiKey, new List<RegistrationSummary>());
+            }
+
             var registrations = _registrations[apiKey];
 
             return new RegistrationSummaryList(apiKey,
