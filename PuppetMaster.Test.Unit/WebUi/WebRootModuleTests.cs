@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Nancy.Testing;
+using NUnit.Framework;
 
 namespace PuppetMaster.Test.Unit.WebUi
 {
@@ -8,10 +9,9 @@ namespace PuppetMaster.Test.Unit.WebUi
         [Test]
         public void RequestRoot_Returns200Ok()
         {
-            // When
             var result = Browser.Get("/", with => with.HttpRequest());
+            var body = result.Body.AsString();
 
-            // Then
             Assert.That(result.StatusCode, Is.EqualTo(Nancy.HttpStatusCode.OK));
         }
     }

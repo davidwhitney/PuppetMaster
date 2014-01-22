@@ -14,7 +14,7 @@ namespace PuppetMaster.Recording
         {
             Get["/_mocks"] = x =>
             {
-                return Response.AsJson(callStore.ListRegistrations(Guid.Empty));
+                return Negotiate.WithModel(callStore.ListRegistrations(Guid.Empty));
             };
 
             Post["/_mocks"] = x =>

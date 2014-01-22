@@ -1,0 +1,15 @@
+﻿@using Nancy.ViewEngines.Razor
+@inherits NancyRazorViewBase<PuppetMaster.Domain.RegistrationSummaryList>
+@{
+    ViewBag.Title = "Home";
+    Layout = "_Layout.cshtml";
+}
+
+<h1>Registered calls</h1>
+
+<ul>
+@foreach (var item in @Model)
+{
+    <li>@item.Method  -  @item.Uri</li>
+}
+</ul>
