@@ -7,10 +7,6 @@ namespace PuppetMaster.Domain
     {
         public Guid ApiKey { get; set; }
 
-        public RegistrationSummaryList(Guid apiKey) : this(apiKey, new List<RegistrationSummary>())
-        {
-        }
-
         public RegistrationSummaryList(Guid apiKey, IEnumerable<RegistrationSummary> items)
             : base(items)
         {
