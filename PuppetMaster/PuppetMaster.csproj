@@ -74,6 +74,8 @@
     <Compile Include="Domain\Registration.cs" />
     <Compile Include="Domain\RegistrationSummary.cs" />
     <Compile Include="Domain\RegistrationSummaryList.cs" />
+    <Compile Include="Domain\RequestDefinition.cs" />
+    <Compile Include="Domain\ResponseDefinition.cs" />
     <Compile Include="Recording\InMemoryCallStore.cs" />
     <Compile Include="Recording\ICallStore.cs" />
     <Compile Include="Recording\MockConfigurationModule.cs" />

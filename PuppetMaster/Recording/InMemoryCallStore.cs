@@ -26,9 +26,12 @@ namespace PuppetMaster.Recording
 
             var registration = new Registration
             {
-                Url = request.Url, 
-                Headers = request.Headers, 
-                Method = request.Method,
+                Request = new RequestDefinition
+                {
+                    Url = request.Url,
+                    Headers = request.Headers,
+                    Method = request.Method,
+                }
             };
             
             _registrations[apiKey.Value].Add(registration.RegistrationId, registration);
