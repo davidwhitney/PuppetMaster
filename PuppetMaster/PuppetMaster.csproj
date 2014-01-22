@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Modules\RecordingModule.cs" />
     <Compile Include="Modules\ReplayingModule.cs" />
+    <Compile Include="Modules\WebRootModule.cs" />
     <Compile Include="NancyService.cs" />
     <Compile Include="NinjectBootstrapper.cs" />
     <Compile Include="Program.cs">
