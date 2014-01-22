@@ -66,9 +66,10 @@ namespace PuppetMaster.Recording.Storage
         {
             if (!_registrations.ContainsKey(apiKey))
             {
-                throw new NoRegistrationsForApiKeyException();
+                return new Registration();
             }
 
+            calledUri.HostName = string.IsNullOrWhiteSpace( calledUri.HostName ) ? "localhost" : calledUri.HostName;
             var uriMatch = calledUri.ToString().Replace(":8080", "");
             var registration = _registrations[apiKey].FirstOrDefault(x => x.Value.Request.Url.ToString().Contains(uriMatch));
 
