@@ -11,6 +11,9 @@ namespace PuppetMaster.Domain
 
         public ResponseDefinition()
         {
+            HttpStatusCode = 200;
+            HttpStatusMessage = "OK";
+            HttpBody = "This method is not yet configured, POST a Registration to /_mocks/{registrationId} to configure.";
             ResponseHeaders = new Dictionary<string, string>();
         }
     }

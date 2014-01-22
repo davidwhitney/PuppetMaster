@@ -62,6 +62,19 @@ namespace PuppetMaster.Recording.Storage
                 : registrationsPerApiKey[registrationId];
         }
 
+        public Registration LoadRegistration(Url calledUri, Guid apiKey)
+        {
+            if (!_registrations.ContainsKey(apiKey))
+            {
+                throw new NoRegistrationsForApiKeyException();
+            }
+
+            var uriMatch = calledUri.ToString().Replace(":8080", "");
+            var registration = _registrations[apiKey].FirstOrDefault(x => x.Value.Request.Url.ToString().Contains(uriMatch));
+
+            return registration.Value;
+        }
+
         public RegistrationSummaryList ListRegistrations(Guid apiKey)
         {
             if (!_registrations.ContainsKey(apiKey))
