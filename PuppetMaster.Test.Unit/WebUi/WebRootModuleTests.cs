@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace PuppetMaster.Test.Unit.Modules
+namespace PuppetMaster.Test.Unit.WebUi
 {
     [TestFixture]
     public class WebRootModuleTests : BrowserTest

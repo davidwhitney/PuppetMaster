@@ -4,13 +4,13 @@ using Nancy;
 using PuppetMaster.Recording.Storage;
 using PuppetMaster.RequestModeDetection;
 
-namespace PuppetMaster.Replaying
+namespace PuppetMaster.Proxying
 {
-    public class ReplayingModule : NancyModule
+    public class ProxyingModule : NancyModule
     {
-        public ReplayingModule(ICallStore callStore)
+        public ProxyingModule(ICallStore callStore)
         {
-            Get["/(.*)", when => when.ModeIs(PuppetMasterMode.Replay)] = x =>
+            Get["/(.*)", when => when.ModeIs(PuppetMasterMode.Proxy)] = x =>
             {
                 var registration = callStore.LoadRegistration(Request.Url, Guid.Empty);
 

@@ -6,7 +6,7 @@ using NUnit.Framework;
 using PuppetMaster.Domain;
 using PuppetMaster.RequestModeDetection;
 
-namespace PuppetMaster.Test.Unit.Modules
+namespace PuppetMaster.Test.Unit.Proxying
 {
     [TestFixture]
     public class MockConfigurationModuleTests : BrowserTest
@@ -57,7 +57,7 @@ namespace PuppetMaster.Test.Unit.Modules
                 with.Header("Content-type", "application/json");
             });
 
-            var result = Browser.Get("/i-am-mocked", with => with.Header(PuppetMasterHeaders.ModeHeader, PuppetMasterMode.Replay.ToString()));
+            var result = Browser.Get("/i-am-mocked", with => with.Header(PuppetMasterHeaders.ModeHeader, PuppetMasterMode.Proxy.ToString()));
 
             Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(result.Body.AsString(), Is.StringContaining("Mock here!"));
@@ -66,20 +66,7 @@ namespace PuppetMaster.Test.Unit.Modules
         [Test]
         public void RequestConfiguringExplicitgly_Called_ReturnsAccepted()
         {
-            var dto = new Registration
-            {
-                Request = new RequestDefinition
-                {
-                    Url = new Uri("http://localhost/i-am-mocked"),
-                    Method = "GET"
-                },
-                Response = new ResponseDefinition
-                {
-                    HttpStatusCode = 200,
-                    HttpStatusMessage = "Awesomely OK",
-                    HttpBody = "Mock here!"
-                }
-            };
+            var dto = ExampleRegistration();
 
             var createResponse = Browser.Post("/_mocks", with =>
             {
@@ -98,8 +85,7 @@ namespace PuppetMaster.Test.Unit.Modules
             Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.Accepted));
         }
 
-        [Test]
-        public void RequestConfiguringExplicitgly_CalledThenRequested_ReturnsModifiedBody()
+        private static Registration ExampleRegistration()
         {
             var dto = new Registration
             {
@@ -115,6 +101,13 @@ namespace PuppetMaster.Test.Unit.Modules
                     HttpBody = "Mock here!"
                 }
             };
+            return dto;
+        }
+
+        [Test]
+        public void RequestConfiguringExplicitgly_CalledThenRequested_ReturnsModifiedBody()
+        {
+            var dto = ExampleRegistration();
 
             var createResponse = Browser.Post("/_mocks", with =>
             {
@@ -131,7 +124,7 @@ namespace PuppetMaster.Test.Unit.Modules
             });
 
 
-            var result = Browser.Get("/i-am-mocked", with => with.Header(PuppetMasterHeaders.ModeHeader, PuppetMasterMode.Replay.ToString()));
+            var result = Browser.Get("/i-am-mocked", with => with.Header(PuppetMasterHeaders.ModeHeader, PuppetMasterMode.Proxy.ToString()));
             
             Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(result.Body.AsString(), Is.StringContaining("updated!"));

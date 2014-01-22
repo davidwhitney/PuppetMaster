@@ -85,7 +85,7 @@
     <Compile Include="RequestModeDetection\PuppetMasterMode.cs" />
     <Compile Include="RequestModeDetection\PuppetMasterHeaders.cs" />
     <Compile Include="Recording\RecordingModule.cs" />
-    <Compile Include="Replaying\ReplayingModule.cs" />
+    <Compile Include="Proxying\ReplayingModule.cs" />
     <Compile Include="WebUi\WebRootModule.cs" />
     <Compile Include="NancyService.cs" />
     <Compile Include="NinjectBootstrapper.cs" />

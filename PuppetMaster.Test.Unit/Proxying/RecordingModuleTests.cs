@@ -3,7 +3,7 @@ using Nancy.Testing;
 using NUnit.Framework;
 using PuppetMaster.RequestModeDetection;
 
-namespace PuppetMaster.Test.Unit.Modules
+namespace PuppetMaster.Test.Unit.Proxying
 {
     [TestFixture]
     public class RecordingModuleTests : BrowserTest

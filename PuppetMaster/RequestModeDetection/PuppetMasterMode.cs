@@ -4,6 +4,6 @@
     {
         Web,
         Record,
-        Replay
+        Proxy
     }
 }

@@ -9,7 +9,7 @@ namespace PuppetMaster.RequestModeDetection
         public static bool InMode(this Request req, PuppetMasterMode mode)
         {
             var recordPort = ConfigurationManager.AppSettings["RecordPort"] ?? "";
-            var replayPort = ConfigurationManager.AppSettings["ReplayPort"] ?? "";
+            var ProxyPort = ConfigurationManager.AppSettings["ProxyPort"] ?? "";
 
             if(req.Url.HostName.Contains(mode.ToString().ToLower()))
             {
@@ -22,7 +22,7 @@ namespace PuppetMaster.RequestModeDetection
                 return true;
             }
 
-            if (port.ToString() == replayPort && mode == PuppetMasterMode.Replay)
+            if (port.ToString() == ProxyPort && mode == PuppetMasterMode.Proxy)
             {
                 return true;
             }
