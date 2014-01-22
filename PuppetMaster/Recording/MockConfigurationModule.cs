@@ -12,31 +12,36 @@ namespace PuppetMaster.Recording
 
         public MockConfigurationModule(ICallStore callStore)
         {
-            Before += CaptureRegistrationId;
+            Get["/_mocks"] = x =>
+            {
+                return Response.AsJson(callStore.ListRegistrations(Guid.Empty));
+            };
 
-            Get["/_mocks/{registrationId}"] = x => Response.AsJson(callStore.LoadRegistration(_registrationId, Guid.Empty));
+            Post["/_mocks"] = x =>
+            {
+                var registration = this.Bind<Registration>();
+                var registrationId = callStore.RegisterCall(registration, Guid.Empty);
+                return Response.AsJson(new RecordingRequestedResponse { RegistrationId = registrationId });
+            };
+
+            Get["/_mocks/{registrationId}"] = x =>
+            {
+                CaptureRegistrationId(Context);
+                return Response.AsJson(callStore.LoadRegistration(_registrationId, Guid.Empty));
+            };
 
             Post["/_mocks/{registrationId}/response"] = x =>
             {
+                CaptureRegistrationId(Context);
                 var response = this.Bind<ResponseDefinition>();
                 callStore.ConfigureResponse(_registrationId, response);
                 return HttpStatusCode.Accepted;
             };
         }
 
-        private Response CaptureRegistrationId(NancyContext ctx)
+        private void CaptureRegistrationId(NancyContext ctx)
         {
-            if (!ctx.Parameters.registrationId.HasValue)
-            {
-                return 400;
-            }
-
-            var success = Guid.TryParse(ctx.Parameters.registrationId.Value, out _registrationId);
-            if (!success)
-            {
-                return 400;
-            }
-            return null;
+            Guid.TryParse(ctx.Parameters.registrationId.Value, out _registrationId);
         }
     }
 }
