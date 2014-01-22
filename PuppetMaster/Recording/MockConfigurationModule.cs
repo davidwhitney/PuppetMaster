@@ -1,5 +1,6 @@
 ﻿using System;
 using Nancy;
+using PuppetMaster.Recording.Storage;
 
 namespace PuppetMaster.Recording
 {

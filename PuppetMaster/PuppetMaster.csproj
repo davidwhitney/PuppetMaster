@@ -76,8 +76,8 @@
     <Compile Include="Domain\RegistrationSummaryList.cs" />
     <Compile Include="Domain\RequestDefinition.cs" />
     <Compile Include="Domain\ResponseDefinition.cs" />
-    <Compile Include="Recording\InMemoryCallStore.cs" />
-    <Compile Include="Recording\ICallStore.cs" />
+    <Compile Include="Recording\Storage\InMemoryCallStore.cs" />
+    <Compile Include="Recording\Storage\ICallStore.cs" />
     <Compile Include="Recording\MockConfigurationModule.cs" />
     <Compile Include="Recording\NoRegistrationsForApiKeyException.cs" />
     <Compile Include="RequestModeDetection\NancyModulesExtensionsForSyntaticSugar.cs" />

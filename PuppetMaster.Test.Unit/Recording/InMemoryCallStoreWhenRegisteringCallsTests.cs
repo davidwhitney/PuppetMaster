@@ -3,6 +3,7 @@ using System.Linq;
 using Nancy;
 using NUnit.Framework;
 using PuppetMaster.Recording;
+using PuppetMaster.Recording.Storage;
 
 namespace PuppetMaster.Test.Unit.Recording
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using Nancy;
 using PuppetMaster.Domain;
 
-namespace PuppetMaster.Recording
+namespace PuppetMaster.Recording.Storage
 {
     public class InMemoryCallStore : ICallStore
     {
@@ -18,10 +18,9 @@ namespace PuppetMaster.Recording
 
         public Guid RegisterCall(Request request, Guid? apiKey = null)
         {
-            apiKey = apiKey ?? Guid.Empty;
-            if (!_registrations.ContainsKey(apiKey.Value))
+            if (string.IsNullOrEmpty(request.Url.HostName))
             {
-                _registrations.TryAdd(apiKey.Value, new Dictionary<Guid, Registration>());
+                request.Url.HostName = "localhost";
             }
 
             var registration = new Registration
@@ -33,6 +32,17 @@ namespace PuppetMaster.Recording
                     Method = request.Method,
                 }
             };
+
+            return RegisterCall(registration, apiKey);
+        }
+
+        public Guid RegisterCall(Registration registration, Guid? apiKey = null)
+        {
+            apiKey = apiKey ?? Guid.Empty;
+            if (!_registrations.ContainsKey(apiKey.Value))
+            {
+                _registrations.TryAdd(apiKey.Value, new Dictionary<Guid, Registration>());
+            }
             
             _registrations[apiKey.Value].Add(registration.RegistrationId, registration);
 

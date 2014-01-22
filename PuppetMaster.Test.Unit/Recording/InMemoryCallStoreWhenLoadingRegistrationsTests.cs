@@ -4,6 +4,7 @@ using Nancy;
 using NUnit.Framework;
 using PuppetMaster.Domain;
 using PuppetMaster.Recording;
+using PuppetMaster.Recording.Storage;
 
 namespace PuppetMaster.Test.Unit.Recording
 {

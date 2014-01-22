@@ -1,6 +1,8 @@
 ﻿using System;
 using Nancy;
+using Nancy.ModelBinding;
 using PuppetMaster.Domain;
+using PuppetMaster.Recording.Storage;
 using PuppetMaster.RequestModeDetection;
 
 namespace PuppetMaster.Recording
@@ -15,6 +17,13 @@ namespace PuppetMaster.Recording
             {
                 var registrationId = callStore.RegisterCall(Request, Guid.Empty);
                 return Response.AsJson(new RecordingRequestedResponse{RegistrationId = registrationId});
+            };
+
+            Post["/_mocks"] = x =>
+            {
+                var registration = this.Bind<Registration>();
+                var registrationId = callStore.RegisterCall(registration, Guid.Empty);
+                return Response.AsJson(new RecordingRequestedResponse { RegistrationId = registrationId });
             };
 
             Get["/_mocks"] = x =>
