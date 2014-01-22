@@ -7,7 +7,7 @@ namespace PuppetMaster.Replaying
     {
         public ReplayingModule()
         {
-            Get["/(.*)", ctx => ctx.ModeIs(PuppetMasterMode.Replay)] = x =>
+            Get["/(.*)", when => when.ModeIs(PuppetMasterMode.Replay)] = x =>
             {
                 return "replay";
             };

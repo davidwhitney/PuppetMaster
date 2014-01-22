@@ -10,7 +10,7 @@ namespace PuppetMaster.Recording
         {
             After += ctx => ctx.Response.Headers.Add(PuppetMasterHeaders.RecordingHeader, "true");
             
-            Get["/(.*)", ctx => ctx.ModeIs(PuppetMasterMode.Record)] = x =>
+            Get["/(.*)", when => when.ModeIs(PuppetMasterMode.Record)] = x =>
             {
                 return Response.AsJson(new RecordingRequestedResponse());
             };

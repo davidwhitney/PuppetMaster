@@ -7,7 +7,7 @@ namespace PuppetMaster.WebUi
     {
         public WebRootModule()
         {
-            Before += ctx => !ctx.Request.InMode(PuppetMasterMode.Web) ? (Response) 404 : null;
+            Before += when => when.ModeIsNot(PuppetMasterMode.Web) ? (Response) 404 : null;
 
             Get["/"] = x =>
             {
