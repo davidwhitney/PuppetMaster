@@ -11,7 +11,7 @@ namespace PuppetMaster.WebUi
 
             Get["/"] = x =>
             {
-                return 200;
+                return View["index.cshtml"];
             };
         }
     }
