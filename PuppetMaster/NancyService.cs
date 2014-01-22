@@ -15,10 +15,8 @@ namespace PuppetMaster
         public NancyService()
         {
             _address = ConfigurationManager.AppSettings["Address"];
-            _nancyHost = new NancyHost(new Uri(_address),
-
-                new NinjectBootstrapper(),
-                new HostConfiguration { UrlReservations = new UrlReservations { CreateAutomatically = true } });
+            _nancyHost = new NancyHost(new NinjectBootstrapper(), new HostConfiguration { UrlReservations = new UrlReservations { CreateAutomatically = true } },
+                new Uri(_address), new Uri("http://record.locahost:8080"));
         }
 
         public void Start(string[] args)
