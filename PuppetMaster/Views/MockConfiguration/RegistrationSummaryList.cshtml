@@ -10,6 +10,6 @@
 <ul>
 @foreach (var item in @Model)
 {
-    <li>@item.Method  -  @item.Uri</li>
+    <li>@item.Method  -  @item.Uri (<a href="/_mocks/@item.RegistrationId">@item.RegistrationId</a>)</li>
 }
 </ul>

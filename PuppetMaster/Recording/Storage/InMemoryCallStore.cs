@@ -73,8 +73,8 @@ namespace PuppetMaster.Recording.Storage
             }
 
             calledUri.HostName = string.IsNullOrWhiteSpace( calledUri.HostName ) ? "localhost" : calledUri.HostName;
-            var uriMatch = calledUri.ToString().Replace(":8080", "");
-            var registration = _registrations[apiKey].FirstOrDefault(x => x.Value.Request.Url.ToString().Contains(uriMatch));
+            var uriMatch = calledUri.ToString().Replace(":8080", "").Replace(":85", "");
+            var registration = _registrations[apiKey].FirstOrDefault(x => x.Value.Request.Url.ToString().ToString().Replace(":8080", "").Replace(":85", "").Contains(uriMatch));
 
             return registration.Value;
         }
