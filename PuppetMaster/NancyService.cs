@@ -16,15 +16,16 @@ namespace PuppetMaster
         {
             _address = ConfigurationManager.AppSettings["Address"];
             var recordPort = ConfigurationManager.AppSettings["RecordPort"];
-            var ProxyPort = ConfigurationManager.AppSettings["ProxyPort"];
-            
-            _nancyHost = new NancyHost(new NinjectBootstrapper(), new HostConfiguration { UrlReservations = new UrlReservations { CreateAutomatically = true } },
-                new Uri(_address + ":" + ProxyPort), new Uri(_address + ":" + recordPort));
+            var proxyPort = ConfigurationManager.AppSettings["ProxyPort"];
+
+            _nancyHost = new NancyHost(new NinjectBootstrapper(),
+                new HostConfiguration {UrlReservations = new UrlReservations {CreateAutomatically = true}},
+                new Uri(_address + ":" + proxyPort), new Uri(_address + ":" + recordPort));
         }
 
         public void Start(string[] args)
         {
-            Console.WriteLine("PuppetMaster endabled on: " + _address);
+            Console.WriteLine("PuppetMaster enabled on: " + _address);
             _nancyHost.Start();
         }
 

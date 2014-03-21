@@ -1,0 +1,16 @@
+﻿@using Nancy.ViewEngines.Razor
+@inherits NancyRazorViewBase<PuppetMaster.Domain.Registration>
+@{
+    ViewBag.Title = "Registration: "+ Model.RegistrationId + " - PuppetMaster";
+    Layout = "_Layout.cshtml";
+}
+
+<h1>Request for: @Model.Request.Url.ToString() (@Model.Request.Method)</h1>
+
+<form role="form" method="POST" action="/_mocks/@Model.RegistrationId/response">
+    <textarea name="json" class="form-control">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Response)</textarea>
+    
+    <input type="submit" value="Save"/>
+</form>
+
+

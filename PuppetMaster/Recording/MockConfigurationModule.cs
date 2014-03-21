@@ -1,6 +1,7 @@
 ﻿using System;
 using Nancy;
 using Nancy.ModelBinding;
+using Newtonsoft.Json;
 using PuppetMaster.Domain;
 using PuppetMaster.Recording.Storage;
 
@@ -27,13 +28,20 @@ namespace PuppetMaster.Recording
             Get["/_mocks/{registrationId}"] = x =>
             {
                 CaptureRegistrationId(Context);
-                return Response.AsJson(callStore.LoadRegistration(_registrationId, Guid.Empty));
+                return Negotiate.WithModel(callStore.LoadRegistration(_registrationId, Guid.Empty));
+                //return Response.AsJson(callStore.LoadRegistration(_registrationId, Guid.Empty));
             };
 
             Post["/_mocks/{registrationId}/response"] = x =>
             {
                 CaptureRegistrationId(Context);
+                
                 var response = this.Bind<ResponseDefinition>();
+                if (Context.Request.Form["json"] != null)
+                {
+                    response = JsonConvert.DeserializeObject<ResponseDefinition>(Context.Request.Form["json"].Value);
+                }
+
                 callStore.ConfigureResponse(_registrationId, response);
                 return HttpStatusCode.Accepted;
             };

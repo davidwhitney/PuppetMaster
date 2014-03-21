@@ -14,7 +14,10 @@ namespace PuppetMaster.Domain
             HttpStatusCode = 200;
             HttpStatusMessage = "OK";
             HttpBody = "This method is not yet configured, POST a Registration to /_mocks/{registrationId} to configure.";
-            ResponseHeaders = new Dictionary<string, string>();
+            ResponseHeaders = new Dictionary<string, string>
+            {
+                {"x-a-header", "is set like this"}
+            };
         }
     }
 }
