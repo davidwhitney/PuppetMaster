@@ -12,12 +12,7 @@ namespace PuppetMaster.WebUi
 
             Get["/"] = x =>
             {
-                var vm = new WebrootViewModel
-                {
-                    RecordPort = cfg.AppSettings.AppSetting<int>("ProxyPort"),
-                    ReplyPort = cfg.AppSettings.AppSetting<int>("RecordPort")
-                };
-
+                var vm = cfg.AppSettings.Map<WebrootViewModel>();
                 return View["index.cshtml", vm];
             };
         }
@@ -26,6 +21,6 @@ namespace PuppetMaster.WebUi
     public class WebrootViewModel
     {
         public int RecordPort { get; set; }
-        public int ReplyPort { get; set; }
+        public int ProxyPort { get; set; }
     }
 }
