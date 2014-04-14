@@ -9,7 +9,7 @@ namespace PuppetMaster.RequestModeDetection
         public static bool InMode(this Request req, PuppetMasterMode mode)
         {
             var recordPort = ConfigurationManager.AppSettings["RecordPort"] ?? "";
-            var ProxyPort = ConfigurationManager.AppSettings["ProxyPort"] ?? "";
+            var proxyPort = ConfigurationManager.AppSettings["ProxyPort"] ?? "";
 
             if(req.Url.HostName.Contains(mode.ToString().ToLower()))
             {
@@ -22,7 +22,7 @@ namespace PuppetMaster.RequestModeDetection
                 return true;
             }
 
-            if (port.ToString() == ProxyPort && mode == PuppetMasterMode.Proxy)
+            if (port.ToString() == proxyPort && mode == PuppetMasterMode.Proxy)
             {
                 return true;
             }

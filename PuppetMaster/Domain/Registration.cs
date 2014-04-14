@@ -13,7 +13,7 @@ namespace PuppetMaster.Domain
         {
             RegistrationId = Guid.NewGuid();
             Request = new RequestDefinition();
-            Response =new ResponseDefinition();
+            Response = new ResponseDefinition();
         }
 
         public static Registration NotRegistered = new Registration();

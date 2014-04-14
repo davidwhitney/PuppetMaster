@@ -2,7 +2,6 @@
 using Nancy.Bootstrapper;
 using Nancy.Json;
 using Ninject;
-using PuppetMaster.Recording;
 using PuppetMaster.Recording.Storage;
 
 namespace PuppetMaster
