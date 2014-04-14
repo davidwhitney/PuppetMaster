@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PuppetMaster.WebUi.WebrootViewModel
+@{
     ViewBag.Title = "Home";
     Layout = "_Layout.cshtml";
 }
@@ -17,4 +18,5 @@
 
 }
 
-Hello
+Record port: @Model.RecordPort </br>
+Reply port: @Model.ReplyPort

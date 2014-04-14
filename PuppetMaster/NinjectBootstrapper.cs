@@ -1,4 +1,5 @@
-﻿using Nancy.Bootstrapper;
+﻿using System.Configuration.Abstractions;
+using Nancy.Bootstrapper;
 using Nancy.Json;
 using Ninject;
 using PuppetMaster.Recording;
@@ -17,6 +18,7 @@ namespace PuppetMaster
         protected override void ConfigureApplicationContainer(IKernel container)
         {
             container.Bind<ICallStore>().To<InMemoryCallStore>().InSingletonScope();
+            container.Bind<IConfigurationManager>().To<ConfigurationManager>().InSingletonScope();
             base.ConfigureApplicationContainer(container);
         }
     }
